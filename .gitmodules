@@ -1,3 +1,6 @@
 [submodule "wp-content/plugins/backup-restore-divi-theme-options"]
 	path = wp-content/plugins/backup-restore-divi-theme-options
 	url = https://github.com/DiviSpace/backup-restore-divi-theme-options
+[submodule "wp-content/plugins/domain-mapping"]
+	path = wp-content/plugins/domain-mapping
+	url = https://ss-readonly:qqAtmBz14TBjA6zzTTtOtm@bitbucket.org/sitespaceclub/domain-mapping.git
