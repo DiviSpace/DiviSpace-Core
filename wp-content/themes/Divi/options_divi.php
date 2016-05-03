@@ -1,7 +1,7 @@
 <?php
 global $epanelMainTabs, $themename, $shortname, $options;
 
-$epanelMainTabs = array('general','navigation','layout','ad','seo','integration','support');
+$epanelMainTabs = array('general','navigation','layout','ad','seo','integration','support','updates');
 
 $cats_array = get_categories('hide_empty=0');
 $pages_array = get_pages('hide_empty=0');
@@ -821,6 +821,53 @@ $options = array (
 			   "type" => "subcontent-end",),
 
 	array( "name" => "wrap-integration",
+		   "type" => "contenttab-wrapend",),
+
+//-------------------------------------------------------------------------------------//
+
+	array( "name" => "wrap-updates",
+		   "type" => "contenttab-wrapstart",),
+
+		array( "type" => "subnavtab-start",),
+
+			array( "name" => "updates-1",
+				   "type" => "subnav-tab",
+				   "desc" => esc_html__("General",$themename)
+			),
+
+		array( "type" => "subnavtab-end",),
+
+		array( "name" => "updates-1",
+			   "type" => "subcontent-start",),
+
+			array(
+				'name'              => esc_html__( 'Username', $themename ),
+				'id'                => 'et_automatic_updates_options_username',
+				'std'               => '',
+				'type'              => 'password',
+				'validation_type'   => 'nohtml',
+				'desc'              => et_get_safe_localization( __( 'Before you can receive product updates, you must first authenticate your Elegant Themes subscription. To do this, you need to enter both your Elegant Themes Username and your Elegant Themes API Key. Your username is the same username you use when logging in to <a href="http://elegantthemes.com/" target="_blank">ElegantThemes.com</a>', $themename ) ),
+				'is_global'         => true,
+				'main_setting_name' => 'et_automatic_updates_options',
+				'sub_setting_name'  => 'username',
+			),
+
+			array(
+				'name'            => esc_html__( 'API Key', $themename ),
+				'id'              => 'et_automatic_updates_options_api_key',
+				'std'             => '',
+				'type'            => 'password',
+				'validation_type' => 'nohtml',
+				'desc'            => et_get_safe_localization( __( 'Before you can receive product updates, you must first authenticate your Elegant Themes subscription. To do this, you need to enter both your Elegant Themes Username and your Elegant Themes API Key. To locate your API Key, <a href="https://www.elegantthemes.com/members-area/" target="_blank">log in</a> to your Elegant Themes account and navigate to the <strong>Account > API Key</strong> page.', $themename ) ),
+				'is_global'         => true,
+				'main_setting_name' => 'et_automatic_updates_options',
+				'sub_setting_name'  => 'api_key',
+			),
+
+		array( "name" => "updates-1",
+			   "type" => "subcontent-end",),
+
+	array( "name" => "wrap-updates",
 		   "type" => "contenttab-wrapend",),
 
 //-------------------------------------------------------------------------------------//

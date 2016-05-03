@@ -5486,6 +5486,9 @@ function et_divi_customize_preview_css() {
 
 	wp_enqueue_style( 'divi-customizer-controls-styles', get_template_directory_uri() . '/css/theme-customizer-controls-styles.css', array(), $theme_version );
 	wp_enqueue_script( 'divi-customizer-controls-js', get_template_directory_uri() . '/js/theme-customizer-controls.js', array( 'jquery' ), $theme_version, true );
+	wp_localize_script( 'divi-customizer-controls-js', 'et_divi_customizer_data', array(
+		'is_old_wp' => et_pb_is_wp_old_version() ? 'old' : 'new',
+	) );
 }
 add_action( 'customize_controls_enqueue_scripts', 'et_divi_customize_preview_css' );
 
@@ -8433,6 +8436,11 @@ function et_divi_register_customizer_portability() {
 	) );
 }
 add_action( 'admin_init', 'et_divi_register_customizer_portability' );
+
+function et_register_updates_component() {
+	et_core_enable_automatic_updates( get_template_directory_uri(), ET_CORE_VERSION );
+}
+add_action( 'admin_init', 'et_register_updates_component' );
 
 /**
  * Register theme and modules Customizer portability link.

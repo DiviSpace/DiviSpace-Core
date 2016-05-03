@@ -1,3 +1,20 @@
+version 2.7.3 ( updated 04-13-2016 )
+- Fixed the update notification text in WordPress 4.5
+	* core/admin/includes/class-updates.php
+
+version 2.7.2 ( updated 04-12-2016 )
+- Theme Options Page: Added option to configure auto updates from the ePanel
+	* epanel/core_functions.php
+	* epanel/css/panel.css
+	* epanel/custom_functions.php
+	* epanel/js/functions-init.js
+	* epanel/js/wp-color-picker-alpha.min.js
+	* /core
+- Customizer: Fixed the issue with Responsive preview in WordPress 4.5
+	* css/theme-customizer-controls-styles.css
+	* functions.php
+	* js/theme-customizer-controls.js
+
 version 2.7.1 ( updated 04-01-2016 )
 - Theme Options Page: Fixed modal windows vertical alignment
 	* epanel/css/panel.css

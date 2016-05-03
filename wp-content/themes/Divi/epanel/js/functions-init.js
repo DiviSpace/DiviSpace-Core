@@ -190,9 +190,11 @@
 			});
 		}
 
-		// Portability integration.
-		etCore.portability.save = function( callback ) {
-			epanel_save( callback, false );
+		if ( typeof etCore !== 'undefined' ) {
+			// Portability integration.
+			etCore.portability.save = function( callback ) {
+				epanel_save( callback, false );
+			}
 		}
 
 		function et_pb_center_modal( $modal ) {
