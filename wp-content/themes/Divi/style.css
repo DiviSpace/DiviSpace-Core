@@ -1,7 +1,7 @@
 /*
-Theme Name: Divi
+Theme Name: Divi 2.7.4
 Theme URI: http://www.elegantthemes.com/gallery/divi/
-Version: 2.7.3
+Version: 2.7.4
 Description: Smart. Flexible. Beautiful. Divi is the most powerful theme in our collection.
 Author: Elegant Themes
 Author URI: http://www.elegantthemes.com
@@ -1210,7 +1210,7 @@ body.admin-bar.et_fixed_nav.et_secondary_nav_enabled #main-header {
 }
 
 #top-header .container {
-	padding-top: 10px;
+	padding-top: 0.75em;
 	font-weight: 600;
 }
 
@@ -1236,10 +1236,6 @@ body.admin-bar.et_fixed_nav.et_secondary_nav_enabled #main-header {
 #top-header #et-info,
 #top-header .et-social-icon a {
 	line-height: 1em;
-}
-
-#top-header .container {
-	padding-top: 0.75em;
 }
 
 /* Transparent Nav */
@@ -2706,6 +2702,14 @@ div.pp_overlay {
 	padding: 0 !important;
 }
 
+#top-menu li.mega-menu > ul > li:nth-of-type(4n) {
+	clear: right;
+}
+
+#top-menu li.mega-menu > ul > li:nth-of-type(5n) {
+	clear: left;
+}
+
 #top-menu li.mega-menu li > ul {
 	position: relative;
 	top: auto;
@@ -3117,6 +3121,10 @@ img#about-image {
 	-moz-border-radius-bottomright: 3px;
 	border-bottom-right-radius: 3px;
 	background-color: #ddd;
+}
+
+#searchsubmit {
+	cursor: pointer;
 }
 
 /* WordPress Calendar */
@@ -5525,6 +5533,14 @@ ul.et_pb_side_nav .side_nav_item a.active {
 		display: none;
 	}
 
+	#top-header .container {
+		padding-top: 0;
+	}
+
+	#et-info {
+		padding-top: 0.75em;
+	}
+
 /* Logo */
 	#logo,
 	.logo_container,
@@ -6011,8 +6027,8 @@ ul.et_pb_side_nav .side_nav_item a.active {
 /* Basic Styles */
 @font-face {
 	font-family: "ETmodules";
-	src: url("includes/builder/fonts/ETmodules_v2_4.eot");
-	src: url("includes/builder/fonts/ETmodules_v2_4.eot?#iefix") format("embedded-opentype"), url("includes/builder/fonts/ETmodules_v2_4.ttf") format("truetype"), url("includes/builder/fonts/ETmodules_v2_4.woff") format("woff"), url("includes/builder/fonts/ETmodules_v2_4.svg#ETmodules") format("svg");
+	src: url("core/admin/fonts/modules.eot");
+	src: url("core/admin/fonts/modules.eot?#iefix") format("embedded-opentype"), url("core/admin/fonts/modules.ttf") format("truetype"), url("core/admin/fonts/modules.woff") format("woff"), url("core/admin/fonts/modules.svg#ETmodules") format("svg");
 	font-weight: normal;
 	font-style: normal;
 }
@@ -9894,21 +9910,29 @@ body.ie .et_pb_divider {
 }
 
 .et_pb_fullwidth_header .et_pb_fullwidth_header_container.left .header-content {
-	margin-right: 2%;
-	margin-left: 4%;
+	margin-right: 6%;
+	margin-left: 0;
 	text-align: left;
 }
 
 .et_pb_fullwidth_header .et_pb_fullwidth_header_container.right .header-content {
 	float: right;
-	margin-right: 4%;
-	margin-left: 2%;
+	margin-right: 0;
+	margin-left: 6%;
 	text-align: right;
 }
 
 .et_pb_fullscreen .et_pb_fullwidth_header_container.left .header-content-container.bottom,
 .et_pb_fullscreen .et_pb_fullwidth_header_container.right .header-content-container.bottom {
 	margin-bottom: 80px;
+}
+
+.et_pb_fullwidth_header .et_pb_fullwidth_header_container.left .header-content {
+	padding-left: 0;
+}
+
+.et_pb_fullwidth_header .et_pb_fullwidth_header_container.right .header-content {
+	padding-right: 0;
 }
 
 /* Content and Image Styling */
@@ -9936,8 +9960,8 @@ body.ie .et_pb_divider {
 	margin-top: 20px;
 }
 
-.et_pb_fullwidth_header .et_pb_fullwidth_header_container .et_pb_button_one {
-	margin-right: 15px;
+.et_pb_fullwidth_header .et_pb_fullwidth_header_container .et_pb_button_two {
+	margin-left: 15px;
 }
 
 /* Header Overlay */

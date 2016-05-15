@@ -1,7 +1,7 @@
 <?php
 global $epanelMainTabs, $themename, $shortname, $options;
 
-$epanelMainTabs = array('general','navigation','layout','ad','seo','integration','support','updates');
+$epanelMainTabs = array('general','navigation','layout','ad','seo','integration','updates');
 
 $cats_array = get_categories('hide_empty=0');
 $pages_array = get_pages('hide_empty=0');
@@ -920,7 +920,7 @@ $options = array (
 		array( "name" => "advertisements-1",
 			   "type" => "subcontent-end",),
 
-	array( "name" => "wrap-support",
+	array( "name" => "wrap-advertisements",
 		   "type" => "contenttab-wrapend",),
 
 //-------------------------------------------------------------------------------------//

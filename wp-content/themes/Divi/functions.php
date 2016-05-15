@@ -8232,7 +8232,11 @@ function et_add_divi_menu() {
 	if ( et_pb_is_allowed( 'theme_options' ) ) {
 
 		if ( isset( $_GET['page'] ) && 'et_divi_options' === $_GET['page'] && isset( $_POST['action'] ) ) {
-			if ( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], 'epanel_nonce' ) ) {
+			if (
+				( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], 'epanel_nonce' ) )
+				||
+				( 'reset' === $_POST['action'] && isset( $_POST['_wpnonce_reset'] ) && wp_verify_nonce( $_POST['_wpnonce_reset'], 'et-nojs-reset_epanel' ) )
+			) {
 				epanel_save_data( 'js_disabled' ); //saves data when javascript is disabled
 			}
 		}

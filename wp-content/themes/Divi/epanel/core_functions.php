@@ -75,6 +75,10 @@ if ( ! function_exists( 'et_epanel_admin_scripts' ) ) {
 		$current_screen = get_current_screen();
 		$is_divi        = ( 'toplevel_page_et_divi_options' === $current_screen->id );
 
+		if ( ! wp_style_is( 'et-core-admin', 'enqueued' ) ) {
+			wp_enqueue_style( 'et-core-admin-epanel', get_template_directory_uri() . '/core/admin/css/core.css', array(), et_get_theme_version() );
+		}
+
 		wp_enqueue_style( 'epanel-style', get_template_directory_uri() . '/epanel/css/panel.css', array(), et_get_theme_version() );
 
 		// ePanel on theme others than Divi might want to add specific styling
@@ -100,7 +104,11 @@ function et_add_epanel() {
 	$epanel = basename( __FILE__ );
 
 	if ( isset( $_GET['page'] ) && $_GET['page'] == $epanel && isset( $_POST['action'] ) ) {
-		if ( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], 'epanel_nonce' ) ) {
+		if (
+			( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], 'epanel_nonce' ) )
+			||
+			( 'reset' === $_POST['action'] && isset( $_POST['_wpnonce_reset'] ) && wp_verify_nonce( $_POST['_wpnonce_reset'], 'et-nojs-reset_epanel' ) )
+		) {
 			epanel_save_data( 'js_disabled' ); //saves data when javascript is disabled
 		}
 	}
@@ -176,6 +184,9 @@ if ( ! function_exists( 'et_build_epanel' ) ) {
 									<?php } ?>
 									<?php if ( in_array( 'integration', $epanelMainTabs ) ) { ?>
 										<li><a href="#wrap-integration"><?php esc_html_e( 'Integration', $themename ); ?></a></li>
+									<?php } ?>
+									<?php if ( in_array( 'support', $epanelMainTabs ) ) { ?>
+										<li><a href="#wrap-support"><?php esc_html_e( 'Support', $themename ); ?></a></li>
 									<?php } ?>
 									<?php if ( in_array( 'updates', $epanelMainTabs ) ) { ?>
 										<li><a href="#wrap-updates"><?php esc_html_e( 'Updates', $themename ); ?></a></li>
@@ -498,7 +509,7 @@ if ( ! function_exists( 'et_build_epanel' ) ) {
 		</div> <!-- end wrapper div -->
 
 		<div id="epanel-ajax-saving">
-			<img src="<?php echo esc_url( get_template_directory_uri() . '/includes/builder/images/ajax-loader.gif' ); ?>" alt="loading" id="loading" />
+			<img src="<?php echo esc_url( get_template_directory_uri() . '/core/admin/images/ajax-loader.gif' ); ?>" alt="loading" id="loading" />
 		</div>
 
 		<script type="text/template" id="epanel-yes-no-button-template">
@@ -659,7 +670,7 @@ if ( ! function_exists( 'epanel_save_data' ) ) {
 							} elseif ( 'different_checkboxes' == $value['type'] ) {
 
 								// saves 'author/date/categories/comments' options
-								$et_option_new_value = array_map( 'intval', array_map( 'wp_strip_all_tags', stripslashes_deep( $_POST[$value['id']] ) ) );
+								$et_option_new_value = array_map( 'sanitize_text_field', array_map( 'wp_strip_all_tags', stripslashes_deep( $_POST[$value['id']] ) ) );
 
 							}
 						} else {

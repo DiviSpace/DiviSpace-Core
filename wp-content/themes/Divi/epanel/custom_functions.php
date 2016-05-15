@@ -73,6 +73,8 @@ if ( ! function_exists( 'et_get_option' ) ) {
 		global $et_theme_options, $shortname;
 
 		if ( $is_global_setting ) {
+			$option_value = '';
+
 			$et_global_setting = get_option( $global_setting_main_name );
 
 			if ( false !== $et_global_setting && isset( $et_global_setting[ $global_setting_sub_name ] ) ) {
@@ -90,7 +92,7 @@ if ( ! function_exists( 'et_get_option' ) ) {
 		}
 
 		// option value might be equal to false, so check if the option is not set in the database
-		if ( ! isset( $et_theme_options[ $option_name ] ) && ( '' != $default_value || $force_default_value ) ) {
+		if ( et_options_stored_in_one_row() && ! isset( $et_theme_options[ $option_name ] ) && ( '' != $default_value || $force_default_value ) ) {
 			$option_value = $default_value;
 		}
 

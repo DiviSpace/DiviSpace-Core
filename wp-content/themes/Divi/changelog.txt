@@ -1,3 +1,25 @@
+version 2.7.4 ( updated 05-10-2016 )
+- "Below posts and  above comments" code integration is now placed in the correct location on post pages.
+	* single.php
+- Links inside of gallery module captions will now function correctly.
+	* includes/builder/scripts/frontend-builder-scripts.js
+- Added missing structured data classes to the Post Title modules.
+	* includes/builder/main-modules.php
+- Fullwidth Portfolio module images will now crop to a more optimal size.
+	* includes/builder/main-modules.php
+	* post_thumbnails_divi.php
+- Custom row padding in the Divi Builder will no longer be overwritten by custom row padding in from the Theme Customizer.
+	* includes/builder/main-structure-elements.php
+- Updated core and epanel submodules to latest versions (Fonts files were moved to /core. If you are currently calling these font files, your CSS files should be updated with new file paths).
+	* /core
+	* /epanel
+- Updated Google+ icon to match the new Google+ logo & branding guidlines.
+	* core/admin/fonts
+- Fixed "Theme Options / Post Meta" settings
+	* epanel/core_functions.php
+- Improved alignment in the Fullwidth Header module
+	* style.css
+
 version 2.7.3 ( updated 04-13-2016 )
 - Fixed the update notification text in WordPress 4.5
 	* core/admin/includes/class-updates.php
