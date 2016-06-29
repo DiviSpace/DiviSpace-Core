@@ -1,3 +1,69 @@
+version 2.7.8 ( updated 06-25-2016 )
+- Added Google Maps API setting ( Google no longer support keyless access )
+	* options_divi.php
+	* includes/builder/framework.php
+	* includes/builder/functions.php
+	* includes/builder/main-modules.php
+	* includes/builder/scripts/builder.js
+	* includes/builder/styles/style.css
+
+version 2.7.7 ( updated 06-23-2016 )
+- Fixed the issue with some custom hover styles not working for Buttons
+	* includes/builder/class-et-builder-element.php
+- Text Module: Removed excessive padding that was mistakenly added to the final paragraph
+	* style.css
+
+version 2.7.6 ( updated 06-21-2016 )
+- Fixed the issue with scroll-to position for anchor links that was calculated before the page had fully loaded
+	* functions.php
+	* js/custom.js
+	* options_divi.php
+- Fixed unwanted collapse on mega menu's fourth column in RTL layout
+	* style.css
+	* rtl.css
+- Fixed unwanted spacing caused by setting menu height when vertical nav option is activated
+	* functions.php
+	* js/theme-customizer-controls.js
+	* js/theme-customizer.js
+	* style.css
+- Login module: Replaced deprecated get_currentuserinfo() function
+	* includes/builder/main-modules.php
+- Fixed the error when sub-menu requires 2 clicks on some devices
+- Accordion module: Fixed a bug which appears when clicking toggle title if vertical nav is activated
+	* includes/builder/scripts/frontend-builder-scripts.js
+- Contact Module: Changed email field requirement
+	* includes/builder/main-modules.php
+- Fixed the issue with Magnific Popup script on default galleries
+	* includes/builder/functions.php
+	* styles.css
+- Slider Module: Fixed the issue with Background Video, shown in Fullscreen on iOS devices
+	* includes/builder/scripts/frontend-builder-scripts.js
+- Button Module: Fixed Custom padding inside the module
+	* includes/builder/class-et-builder-element.php
+	* includes/builder/main-modules.php
+- Slider module: Fixed some issues with Advanced settings / Header Font Size option on mobile
+	* includes/builder/class-et-builder-element.php
+	* includes/builder/main-modules.php
+	* style.css
+- Text Module: Added header font options
+	* includes/builder/class-et-global-settings.php
+	* includes/builder/main-modules.php
+- Fixed different aspect ratio for embedded video on post content and post format's content
+	* includes/builder/functions.php
+- Added wider margin for aligned images
+- Mega Menu: Fixed some issues with links positions
+	* style.css
+
+version 2.7.5 ( updated 05-16-2016 )
+- Fixed issue where incorrect margin values were used in the Shop module.
+ 	* epanel/shortcodes/css/shortcodes.css
+- Fixed issue where Slide In header style was closed when an internal link was clicked.
+	* scripts/frontend-builder-global-functions.js
+- Fixed the issue with Page Builder styles, missing for non-admin users
+	* core/init.php
+- Fixed issue that caused menu items to stack in mega menus with more than 5 sub menus.
+	* style.css
+
 version 2.7.4 ( updated 05-10-2016 )
 - "Below posts and  above comments" code integration is now placed in the correct location on post pages.
 	* single.php

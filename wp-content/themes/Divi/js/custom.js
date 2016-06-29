@@ -215,6 +215,34 @@
 			}
 		}
 
+		function et_page_load_scroll_to_anchor() {
+			var $map_container = $( window.et_location_hash + ' .et_pb_map_container' ),
+				$map = $map_container.children( '.et_pb_map' ),
+				$target = $( window.et_location_hash );
+
+			// Make the target element visible again
+			$target.css( 'display', window.et_location_hash_style );
+
+			var distance = ( 'undefined' !== typeof( $target.offset().top ) ) ? $target.offset().top : 0,
+				speed = ( distance > 4000 ) ? 1600 : 800;
+
+			if ( $map_container.length ) {
+				google.maps.event.trigger( $map[0], 'resize' );
+			}
+
+			// Allow the header sizing functions enough time to finish before scrolling the page
+			setTimeout( function() {
+				et_pb_smooth_scroll( $target, false, speed, 'swing');
+
+				// During the page scroll animation, the header's height might change.
+				// Do the scroll animation again to ensure its accuracy.
+				setTimeout( function() {
+					et_pb_smooth_scroll( $target, false, 150, 'linear' );
+				}, speed + 25 );
+
+			}, 700 );
+		}
+
 		function et_fix_page_container_position(){
 			var et_window_width     = $et_window.width(),
 				$top_header          = $( '#top-header' ),
@@ -586,6 +614,11 @@
 			}
 
 			et_fix_page_container_position();
+
+			if ( window.hasOwnProperty( 'et_location_hash' ) && '' !== window.et_location_hash ) {
+				// Handle the page scroll that we prevented earlier in the <head>
+				et_page_load_scroll_to_anchor();
+			}
 
 			if ( et_header_style_left && !et_vertical_navigation) {
 				$logo_width = $( '#logo' ).width();

@@ -222,6 +222,27 @@ function et_add_viewport_meta(){
 }
 add_action( 'wp_head', 'et_add_viewport_meta' );
 
+function et_maybe_add_scroll_to_anchor_fix() {
+	$add_scroll_to_anchor_fix = et_get_option( 'divi_scroll_to_anchor_fix' );
+
+	if ( 'on' === $add_scroll_to_anchor_fix ) {
+		echo '<script>
+				document.addEventListener( "DOMContentLoaded", function( event ) {
+					window.et_location_hash = window.location.hash;
+					if ( "" !== window.et_location_hash ) {
+						// Prevent jump to anchor - Firefox
+						window.scrollTo( 0, 0 );
+						var et_anchor_element = document.getElementById( window.et_location_hash.substring( 1 ) );
+						window.et_location_hash_style = et_anchor_element.style.display;
+						// Prevent jump to anchor - Other Browsers
+						et_anchor_element.style.display = "none";
+					}
+				} );
+		</script>';
+	}
+}
+add_action( 'wp_head', 'et_maybe_add_scroll_to_anchor_fix', 9 );
+
 function et_remove_additional_stylesheet( $stylesheet ){
 	global $default_colorscheme;
 	return $default_colorscheme;
@@ -449,6 +470,7 @@ function et_divi_post_settings_save_details( $post_id, $post ){
 }
 add_action( 'save_post', 'et_divi_post_settings_save_details', 10, 2 );
 
+if ( ! function_exists( 'et_get_one_font_languages' ) ) :
 function et_get_one_font_languages() {
 	$one_font_languages = array(
 		'he_IL' => array(
@@ -490,6 +512,7 @@ function et_get_one_font_languages() {
 
 	return $one_font_languages;
 }
+endif;
 
 function et_divi_customize_register( $wp_customize ) {
 	$wp_customize->remove_section( 'title_tagline' );
@@ -1814,6 +1837,25 @@ function et_divi_customizer_theme_settings( $wp_customize ) {
 			'min'  => 30,
 			'max'  => 100,
 			'step' => 1,
+		),
+	) ) );
+
+	$wp_customize->add_setting( 'et_divi[menu_margin_top]', array(
+		'default'       => '0',
+		'type'          => 'option',
+		'capability'    => 'edit_theme_options',
+		'transport'     => 'postMessage',
+		'sanitize_callback' => 'absint',
+	) );
+
+	$wp_customize->add_control( new ET_Divi_Range_Option ( $wp_customize, 'et_divi[menu_margin_top]', array(
+		'label'	      => esc_html__( 'Menu Top Margin', 'Divi' ),
+		'section'     => 'et_divi_header_primary',
+		'type'        => 'range',
+		'input_attrs' => array(
+			'min'  => 0,
+			'max'  => 300,
+			'step' => 1
 		),
 	) ) );
 
@@ -5720,6 +5762,7 @@ function et_divi_add_customizer_css(){ ?>
 		$header_style = et_get_option( 'header_style', 'left' );
 		$menu_height = absint( et_get_option( 'menu_height', '66' ) );
 		$logo_height = absint( et_get_option( 'logo_height', '54' ) );
+		$menu_margin_top = absint( et_get_option( 'menu_margin_top', '0' ) );
 		$menu_link = et_get_option( 'menu_link', $legacy_primary_nav_color );
 		$menu_link_active = et_get_option( 'menu_link_active', '#2ea3f2' );
 		$vertical_nav = et_get_option( 'vertical_nav', false );
@@ -6306,6 +6349,9 @@ function et_divi_add_customizer_css(){ ?>
 				#main-header .logo_container { width: <?php echo esc_html( $logo_height . '%' ); ?>; }
 				.et_header_style_centered #main-header .logo_container,
 				.et_header_style_split #main-header .logo_container { margin: 0 auto; }
+			<?php } ?>
+			<?php if ( $vertical_nav && 0 !== $menu_margin_top ) { ?>
+				.et_vertical_nav #et-top-navigation { margin-top: <?php echo esc_html( $menu_margin_top . 'px' ); ?>;}
 			<?php } ?>
 			<?php if ( 'false' !== $hide_primary_logo || 'false' !== $hide_fixed_logo ) { ?>
 				.et_header_style_centered.et_hide_primary_logo #main-header:not(.et-fixed-header) .logo_container, .et_header_style_centered.et_hide_fixed_logo #main-header.et-fixed-header .logo_container { height: <?php echo esc_html( $menu_height * .18 ); ?>px; }
