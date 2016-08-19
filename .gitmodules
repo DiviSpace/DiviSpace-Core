@@ -4,3 +4,6 @@
 [submodule "wp-content/plugins/domain-mapping"]
 	path = wp-content/plugins/domain-mapping
 	url = https://ss-readonly:qqAtmBz14TBjA6zzTTtOtm@bitbucket.org/sitespaceclub/domain-mapping.git
+[submodule "wp-content/themes/Divi"]
+	path = wp-content/themes/Divi
+	url = git@gitlab.com:SiteSpace/Divi.git
