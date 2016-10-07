@@ -54,4 +54,14 @@ function divi_footer_field_init() {
     echo '<p>Current Footer Preview: ' . $options . '</p>';
 }
 
+/* ------------------------------
+    Set Default Footer Credits
+--------------------------------- */
+
+if ( ! function_exists( 'et_get_original_footer_credits' ) ) :
+function et_get_original_footer_credits() {
+	return 'Powered by <a href="http://www.divispace.com" title="Divi Hosting">DiviSpace</a>';
+}
+endif;
+
 ?>
